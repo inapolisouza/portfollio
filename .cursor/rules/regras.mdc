@@ -1,0 +1,99 @@
+---
+alwaysApply: true
+---
+1. Pré-requisitos obrigatórios
+Este curso não é para iniciantes absolutos.
+O aluno deve ter conhecimento básico em:
+HTML
+CSS
+JavaScript
+Lógica de programação
+Git básico
+👉 O foco do curso é nível intermediário profissional.
+🔹 2. Código limpo é obrigatório
+Todo código deve seguir boas práticas de mercado:
+Componentes pequenos e reutilizáveis
+Funções com responsabilidade única
+Nomes claros e sem abreviações genéricas
+Nada de lógica complexa em componentes de UI
+Separação clara entre UI, lógica e serviços
+❌ “Funciona, mas está bagunçado” não é aceito.
+🔹 3. Padrão React + Next.js
+É obrigatório:
+Organização correta de pastas
+Uso consciente de hooks
+Server Components / Client Components quando aplicável
+SEO básico com Next.js
+Boa performance e carregamento
+👉 Código pensado para produção real.
+🔹 4. Tailwind CSS com padrão profissional
+Classes organizadas e legíveis
+Criação de componentes reutilizáveis
+Responsividade obrigatória (mobile first)
+Design consistente
+❌ Tailwind não é desculpa para código visual poluído.
+🔹 5. Supabase como Backend (regra central)
+O Supabase deve ser usado de forma correta e segura:
+PostgreSQL como fonte de verdade
+Uso de Supabase Auth para autenticação
+Uso de Row Level Security (RLS) obrigatoriamente
+Queries bem definidas
+Uso correto de roles e policies
+❌ Backend sem RLS é considerado inseguro.
+🔹 6. Estrutura de acesso ao Supabase
+Cliente Supabase centralizado
+Nada de lógica de banco espalhada no front
+Separação entre:
+UI
+Services
+Queries
+👉 Organização é avaliada.
+🔹 7. Segurança e variáveis de ambiente
+Obrigatório:
+Nunca expor keys sensíveis no front
+Uso correto de .env
+Diferença entre anon key e service role
+❌ Vazamento de chave = erro grave.
+🔹 8. Git obrigatório desde o início
+Todo projeto deve:
+Estar no GitHub
+Usar commits semânticos:
+feat, fix, refactor, docs
+Ter histórico claro
+👉 Git faz parte da nota final.
+🔹 9. Documentação é parte do projeto
+Todo projeto deve conter README profissional com:
+Descrição do projeto
+Stack utilizada
+Arquitetura básica
+Como rodar localmente
+Variáveis de ambiente
+Regras de autenticação (Supabase)
+Link do deploy
+❌ Projeto sem documentação é incompleto.
+🔹 10. Deploy obrigatório
+O projeto só é considerado finalizado quando:
+Front-end publicado no Vercel
+Supabase configurado corretamente
+Banco e autenticação funcionando
+Links ativos
+Sem deploy = projeto não existe.
+🔹 11. Responsividade sem exceção
+Todos os projetos devem:
+Funcionar em celular, tablet e desktop
+Ser mobile first
+Ser testados em múltiplos tamanhos de tela
+🔹 12. Nada de copiar e colar
+❌ Copiar código ou queries sem entender
+✅ Escrever, explicar e justificar decisões
+👉 O aluno deve conseguir defender seu código.
+🔹 13. Avaliação com padrão de empresa
+Projetos serão avaliados por:
+Código limpo
+Uso correto do Supabase
+Segurança (RLS, Auth)
+Organização
+Documentação
+Pronto para produção
+🧠 REGRA DE OURO
+“Se esse projeto não fosse seguro para produção, ele não entra no portfólio.”
