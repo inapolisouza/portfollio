@@ -1,3 +1,15 @@
+/**
+ * Componente Technologies
+ * 
+ * Exibe as tecnologias e ferramentas utilizadas.
+ * 
+ * Funcionalidades:
+ * - Grid responsivo de tecnologias
+ * - Ícones e cores personalizadas
+ * - Hover effects
+ */
+
+// Lista de tecnologias com ícones e cores
 const technologies = [
   { name: 'React', icon: '⚛️', color: 'text-blue-400' },
   { name: 'Node.js', icon: '🟢', color: 'text-green-400' },

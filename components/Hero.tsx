@@ -1,3 +1,15 @@
+/**
+ * Componente Hero
+ * 
+ * Seção principal de apresentação do portfólio.
+ * Exibe nome, título profissional, descrição e call-to-actions.
+ * 
+ * Funcionalidades:
+ * - Apresentação pessoal
+ * - Imagem de perfil responsiva
+ * - Botões de ação (Ver Projetos e Entrar em Contato)
+ * - Design responsivo com grid
+ */
 'use client'
 
 import Link from 'next/link'
@@ -29,7 +41,9 @@ export default function Hero() {
                 Ver Projetos
               </Link>
               <Link
-                href="#contato"
+                href="https://wa.me/5521971549767"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-6 py-3 border-2 border-primary text-primary hover:bg-primary/10 font-semibold rounded-lg transition-colors text-center"
               >
                 Entrar em Contato

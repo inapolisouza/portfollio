@@ -1,3 +1,13 @@
+/**
+ * Componente About (Sobre Mim)
+ * 
+ * Seção que apresenta informações sobre o desenvolvedor.
+ * 
+ * Funcionalidades:
+ * - Descrição profissional
+ * - Imagem de perfil
+ * - Layout responsivo em duas colunas
+ */
 import Image from 'next/image'
 
 export default function About() {

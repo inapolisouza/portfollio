@@ -1,3 +1,14 @@
+/**
+ * Componente WhatsAppButton
+ * 
+ * Botão flutuante fixo no canto inferior direito para contato via WhatsApp.
+ * 
+ * Funcionalidades:
+ * - Botão fixo e sempre visível
+ * - Link direto para WhatsApp
+ * - Design circular com ícone oficial
+ * - Hover effects
+ */
 'use client'
 
 import Link from 'next/link'

@@ -1,3 +1,13 @@
+/**
+ * Componente Footer
+ * 
+ * Rodapé do site com informações de copyright e links sociais.
+ * 
+ * Funcionalidades:
+ * - Copyright
+ * - Links para redes sociais (LinkedIn, GitHub)
+ * - Design responsivo
+ */
 import Link from 'next/link'
 import { Linkedin, Github } from 'lucide-react'
 
