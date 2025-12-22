@@ -8,9 +8,11 @@
  * - Fonte Google (Inter)
  * - Estilos globais
  * - Idioma português brasileiro
+ * - Analytics da Vercel
  */
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 // Configuração da fonte Inter do Google Fonts
@@ -29,7 +31,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <Analytics />
+      </body>
     </html>
   )
 }
