@@ -80,7 +80,7 @@ export default function Header() {
           </Link>
           
           {/* Menu de navegação desktop */}
-          <ul className="hidden md:flex items-center space-x-6 lg:space-x-8">
+          <ul className="hidden lg:flex items-center space-x-6 lg:space-x-8">
             {navItems.map((item) => {
               const sectionId = item.href.replace('#', '')
               const isActive = activeSection === sectionId
@@ -102,11 +102,13 @@ export default function Header() {
             })}
           </ul>
 
-          {/* Botão do menu mobile (hambúrguer) */}
+          {/* Botão do menu mobile (hambúrguer) - visível em telas menores que lg */}
           <button 
-            className="md:hidden text-white p-2 hover:bg-gray-800 rounded-lg transition-colors"
+            className="lg:hidden text-white p-2 hover:bg-gray-800 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary z-50"
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
+            type="button"
           >
             {isMobileMenuOpen ? (
               // Ícone X quando o menu está aberto
@@ -122,9 +124,9 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Menu mobile dropdown */}
+        {/* Menu mobile dropdown - visível em telas menores que lg */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-800 bg-dark/95 backdrop-blur-sm">
+          <div className="lg:hidden border-t border-gray-800 bg-dark/98 backdrop-blur-sm animate-in slide-in-from-top-2 duration-200">
             <ul className="flex flex-col py-4">
               {navItems.map((item) => {
                 const sectionId = item.href.replace('#', '')
@@ -135,9 +137,9 @@ export default function Header() {
                     <Link
                       href={item.href}
                       onClick={closeMobileMenu}
-                      className={`block px-4 py-2 text-base transition-colors ${
+                      className={`block px-4 py-3 text-base transition-colors ${
                         isActive
-                          ? 'text-primary font-semibold'
+                          ? 'text-primary font-semibold bg-primary/10'
                           : 'text-gray-300 hover:text-white hover:bg-gray-800'
                       }`}
                     >
