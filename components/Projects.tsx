@@ -17,7 +17,7 @@ const projects = [
   {
     id: 1,
     title: 'Sistema para Restaurante',
-    description: 'Sistema completo para gestão de restaurante com controle de pedidos, cardápio e gestão financeira.',
+    description: 'Sistema para restaurantes com cardápio digital, painel admin, atualização em nuvem e integração com WhatsApp para finalizar pedidos. Tudo rápido, simples e sem complicações.',
     technologies: ['React', 'Node.js', 'PostgreSQL'],
     githubUrl: 'https://github.com/inapolisouza',
     demoUrl: 'https://cristorta.vercel.app/',
@@ -36,13 +36,13 @@ const projects = [
   },
   {
     id: 3,
-    title: 'Site Apple',
-    description: 'Clone do site da Apple com design moderno e responsivo.',
-    technologies: ['HTML', 'CSS', 'JavaScript'],
-    githubUrl: 'https://github.com/inapolisouza/site-apple',
-    demoUrl: 'https://inapolisouza.github.io/site-aple/',
+    title: 'Chatbot IA WhatsApp',
+    description: 'IA para atendimento whatsapp com captação de clientes — configurável e rápido.',
+    technologies: ['Node.js', 'React', 'PostgreSQL'],
+    githubUrl: 'https://github.com/inapolisouza',
+    demoUrl: '#',
     hasVideo: true,
-    videoSrc: '/video2port.mp4',
+    videoSrc: '/chatbot.mp4',
   },
 ]
 
@@ -61,7 +61,7 @@ export default function Projects() {
     <section id="projetos" className="py-16 md:py-24 bg-dark-light">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 md:mb-16 text-center">
-          Alguns projetos que fiz
+          Alguns projetos
         </h2>
         
         {/* Grid responsivo de projetos */}
@@ -69,10 +69,10 @@ export default function Projects() {
           {projects.map((project) => {
 
             return (
-              <div
-                key={project.id}
-                className="bg-dark border border-gray-800 rounded-lg p-6 hover:border-primary/50 transition-colors"
-              >
+            <div
+              key={project.id}
+              className="bg-dark border border-gray-800 rounded-lg p-6 hover:border-primary/50 transition-colors"
+            >
                 {/* Título e Vídeo em blocos lado a lado (apenas se tiver vídeo) */}
                 {project.hasVideo ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
@@ -103,8 +103,8 @@ export default function Projects() {
                     className="text-xl md:text-2xl font-bold text-white mb-3 cursor-pointer"
                     onClick={() => handleCardClick(project.demoUrl || '#')}
                   >
-                    {project.title}
-                  </h3>
+                {project.title}
+              </h3>
                 )}
                 
                 {/* Descrição do projeto - clicável */}

@@ -40,6 +40,8 @@ const technologies = [
   { name: 'PostgreSQL', icon: '🐘', color: 'text-blue-300', customIcon: null },
   { name: 'MongoDB', icon: '🍃', color: 'text-green-300', customIcon: null },
   { name: 'Docker', icon: '🐳', color: 'text-blue-300', customIcon: null },
+  { name: 'OWASP', icon: '🔒', color: 'text-orange-400', customIcon: null },
+  { name: 'Uniscan', icon: '🔍', color: 'text-purple-400', customIcon: null },
 ]
 
 export default function Technologies() {
@@ -59,7 +61,7 @@ export default function Technologies() {
               {tech.customIcon ? (
                 <div className="mb-4 flex items-center justify-center">{tech.customIcon}</div>
               ) : (
-                <div className={`text-5xl md:text-6xl mb-4 ${tech.color}`}>{tech.icon}</div>
+              <div className={`text-5xl md:text-6xl mb-4 ${tech.color}`}>{tech.icon}</div>
               )}
               <p className="text-sm md:text-base text-gray-300 font-medium">{tech.name}</p>
             </div>

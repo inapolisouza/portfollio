@@ -1,15 +1,3 @@
-/**
- * Componente Hero
- * 
- * Seção principal de apresentação do portfólio.
- * Exibe nome, título profissional, descrição e call-to-actions.
- * 
- * Funcionalidades:
- * - Apresentação pessoal
- * - Imagem de perfil responsiva
- * - Botões de ação (Ver Projetos e Entrar em Contato)
- * - Design responsivo com grid
- */
 'use client'
 
 import Link from 'next/link'
@@ -41,9 +29,7 @@ export default function Hero() {
                 Ver Projetos
               </Link>
               <Link
-                href="https://wa.me/5521971549767"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#contato"
                 className="px-6 py-3 border-2 border-primary text-primary hover:bg-primary/10 font-semibold rounded-lg transition-colors text-center"
               >
                 Entrar em Contato
@@ -53,13 +39,13 @@ export default function Hero() {
 
           {/* Lado direito - Imagem */}
           <div className="relative w-full min-h-[400px] md:min-h-[500px] lg:min-h-[600px] order-first lg:order-last flex items-center justify-center">
-            <div className="relative w-full aspect-auto rounded-lg flex items-center justify-center p-4">
+            <div className="relative w-full rounded-lg flex items-center justify-center">
               <Image
                 src="/inapoli-souza.jpg"
                 alt="Inapoli Souza - Desenvolvedor Fullstack"
                 width={600}
                 height={800}
-                className="object-contain rounded-lg w-full h-auto max-w-full"
+                className="object-contain rounded-lg w-full h-auto"
                 priority
               />
             </div>

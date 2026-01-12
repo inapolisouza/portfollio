@@ -23,7 +23,7 @@ export default function Contact() {
     email: '',
     message: '',
   })
-  
+
   // Estado de submissão (loading)
   const [isSubmitting, setIsSubmitting] = useState(false)
   
@@ -45,7 +45,7 @@ export default function Contact() {
       if (result.success) {
         setSubmitMessage({ type: 'success', text: 'Mensagem enviada com sucesso!' })
         // Limpa o formulário após sucesso
-        setFormData({ name: '', email: '', message: '' })
+    setFormData({ name: '', email: '', message: '' })
       } else {
         setSubmitMessage({ type: 'error', text: result.error || 'Erro ao enviar mensagem.' })
       }

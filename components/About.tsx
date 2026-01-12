@@ -22,17 +22,17 @@ export default function About() {
           <div className="space-y-4 text-gray-300 text-lg leading-relaxed">
             <p>
               Sou desenvolvedor fullstack com experiência no desenvolvimento de aplicações web completas, 
-              do frontend ao backend, focado em qualidade e performance.
+              do frontend ao backend, focado em qualidade , performance e segurança .
             </p>
           </div>
           
           <div className="relative w-full h-[300px] md:h-[400px] order-first lg:order-last flex items-center justify-center">
-            <div className="relative w-full h-full rounded-lg overflow-hidden flex items-center justify-center">
+            <div className="relative w-full h-full rounded-lg overflow-hidden">
               <Image
                 src="/inapoli-souza-about.jpg"
                 alt="Inapoli Souza"
                 fill
-                className="object-contain rounded-lg"
+                className="object-cover rounded-lg"
               />
             </div>
           </div>
