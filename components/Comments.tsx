@@ -44,6 +44,47 @@ export default function Comments() {
   const [editingId, setEditingId] = useState<string | null>(null)
   const [editData, setEditData] = useState<{ name: string; message: string }>({ name: '', message: '' })
   const [isDeleting, setIsDeleting] = useState<string | null>(null)
+  
+  // IDs dos comentários criados pelo usuário atual (armazenados no localStorage)
+  const [myCommentIds, setMyCommentIds] = useState<Set<string>>(new Set())
+  
+  /**
+   * Carrega os IDs dos comentários do usuário do localStorage
+   */
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('my_comment_ids')
+      if (stored) {
+        try {
+          const ids = JSON.parse(stored)
+          setMyCommentIds(new Set(ids))
+        } catch (error) {
+          console.error('Erro ao carregar IDs dos comentários:', error)
+        }
+      }
+    }
+  }, [])
+  
+  /**
+   * Verifica se um comentário pertence ao usuário atual
+   */
+  const isMyComment = (commentId: string): boolean => {
+    return myCommentIds.has(commentId)
+  }
+  
+  /**
+   * Adiciona um ID de comentário à lista do usuário
+   */
+  const addMyCommentId = (commentId: string) => {
+    const newIds = new Set(myCommentIds)
+    newIds.add(commentId)
+    setMyCommentIds(newIds)
+    
+    // Salva no localStorage
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('my_comment_ids', JSON.stringify(Array.from(newIds)))
+    }
+  }
 
   /**
    * Carrega os comentários do banco de dados
@@ -133,6 +174,19 @@ export default function Comments() {
         setFormData({ name: '', message: '' })
         // Recarrega os comentários para mostrar o novo
         await loadComments()
+        
+        // Busca o ID do comentário recém-criado e adiciona à lista do usuário
+        const newComments = await getComments()
+        if (newComments.success && newComments.comments) {
+          // Pega o comentário mais recente com o mesmo nome
+          const latestComment = newComments.comments.find(
+            (c) => c.name === sanitizedData.name && 
+                   Math.abs(new Date(c.created_at).getTime() - Date.now()) < 5000 // Criado nos últimos 5 segundos
+          )
+          if (latestComment) {
+            addMyCommentId(latestComment.id)
+          }
+        }
       } else {
         setSubmitMessage({ type: 'error', text: result.error || 'Erro ao enviar comentário.' })
       }
@@ -299,8 +353,9 @@ export default function Comments() {
                   required
                   maxLength={1000}
                   rows={5}
-                  className="w-full px-4 py-2 bg-dark border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary resize-none"
-                  placeholder="Seu comentário (HTML seguro permitido: negrito, itálico, links)"
+                  className="w-full px-4 py-2 bg-dark border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary resize-none"
+                  placeholder="Digite seu comentário aqui... (HTML seguro permitido: negrito, itálico, links)"
+                  style={{ backgroundColor: '#0F172A', minHeight: '120px' }}
                 />
                 <p className="text-xs text-gray-500 mt-1">
                   {formData.message.length}/1000 caracteres
@@ -425,27 +480,30 @@ export default function Comments() {
                               {formatDate(comment.created_at)}
                             </p>
                           </div>
-                          <div className="flex gap-2 ml-4">
-                            <button
-                              onClick={() => startEdit(comment)}
-                              className="p-2 text-gray-400 hover:text-primary transition-colors"
-                              title="Editar comentário"
-                            >
-                              <Edit2 size={18} />
-                            </button>
-                            <button
-                              onClick={() => handleDelete(comment.id)}
-                              disabled={isDeleting === comment.id}
-                              className="p-2 text-gray-400 hover:text-red-400 transition-colors disabled:opacity-50"
-                              title="Deletar comentário"
-                            >
-                              {isDeleting === comment.id ? (
-                                <div className="w-4 h-4 border-2 border-red-400 border-t-transparent rounded-full animate-spin" />
-                              ) : (
-                                <Trash2 size={18} />
-                              )}
-                            </button>
-                          </div>
+                          {/* Mostra botões de editar/deletar apenas para comentários do próprio usuário */}
+                          {isMyComment(comment.id) && (
+                            <div className="flex gap-2 ml-4">
+                              <button
+                                onClick={() => startEdit(comment)}
+                                className="p-2 text-gray-400 hover:text-primary transition-colors"
+                                title="Editar meu comentário"
+                              >
+                                <Edit2 size={18} />
+                              </button>
+                              <button
+                                onClick={() => handleDelete(comment.id)}
+                                disabled={isDeleting === comment.id}
+                                className="p-2 text-gray-400 hover:text-red-400 transition-colors disabled:opacity-50"
+                                title="Deletar meu comentário"
+                              >
+                                {isDeleting === comment.id ? (
+                                  <div className="w-4 h-4 border-2 border-red-400 border-t-transparent rounded-full animate-spin" />
+                                ) : (
+                                  <Trash2 size={18} />
+                                )}
+                              </button>
+                            </div>
+                          )}
                         </div>
                         
                         {/* 
