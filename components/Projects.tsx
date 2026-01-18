@@ -17,7 +17,7 @@ const projects = [
   {
     id: 1,
     title: 'Sistema para Restaurante',
-    description: 'Sistema para restaurantes com cardápio digital, painel admin, atualização em nuvem e integração com WhatsApp para finalizar pedidos. Tudo rápido, simples e sem complicações.',
+    description: 'Sistema completo para gestão de restaurante com controle de pedidos, cardápio e gestão financeira.',
     technologies: ['React', 'Node.js', 'PostgreSQL'],
     githubUrl: 'https://github.com/inapolisouza',
     demoUrl: 'https://cristorta.vercel.app/',
@@ -26,6 +26,16 @@ const projects = [
   },
   {
     id: 2,
+    title: 'Chatbot IA WhatsApp',
+    description: 'IA para atendimento whatsapp com captação de clientes — configurável e rápido.',
+    technologies: ['Node.js', 'React', 'PostgreSQL'],
+    githubUrl: 'https://github.com/inapolisouza',
+    demoUrl: '#',
+    hasVideo: true,
+    videoSrc: '/chat ia.mp4',
+  },
+  {
+    id: 3,
     title: 'NPFlix',
     description: 'Plataforma de streaming inspirada na Netflix, desenvolvida com tecnologias modernas.',
     technologies: ['HTML', 'CSS', 'JavaScript'],
@@ -33,17 +43,7 @@ const projects = [
     demoUrl: 'https://inapolisouza.github.io/napoliflix/',
     hasVideo: true,
     videoSrc: '/videoport3.mp4',
-  },
-  {
-    id: 3,
-    title: 'Chatbot IA WhatsApp',
-    description: 'IA para atendimento whatsapp com captação de clientes — configurável e rápido.',
-    technologies: ['Node.js', 'React', 'PostgreSQL'],
-    githubUrl: 'https://github.com/inapolisouza',
-    demoUrl: '#',
-    hasVideo: true,
-    videoSrc: '/chatbot.mp4',
-  },
+  }
 ]
 
 export default function Projects() {

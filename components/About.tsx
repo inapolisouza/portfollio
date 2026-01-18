@@ -27,12 +27,12 @@ export default function About() {
           </div>
           
           <div className="relative w-full h-[300px] md:h-[400px] order-first lg:order-last flex items-center justify-center">
-            <div className="relative w-full h-full rounded-lg overflow-hidden">
+            <div className="relative w-full h-full rounded-lg overflow-hidden flex items-center justify-center">
               <Image
                 src="/inapoli-souza-about.jpg"
                 alt="Inapoli Souza"
                 fill
-                className="object-cover rounded-lg"
+                className="object-contain rounded-lg"
               />
             </div>
           </div>

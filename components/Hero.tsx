@@ -1,58 +1,62 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
 export default function Hero() {
-  return (
-    <section id="inicio" className="pt-24 md:pt-32 pb-16 md:pb-24 min-h-screen flex items-center">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* Lado esquerdo - Conteúdo de texto */}
-          <div className="text-center lg:text-left space-y-6">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Olá, eu sou{' '}
-              <span className="block text-primary">Inapoli Souza</span>
-            </h1>
-            <p className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-300">
-              Desenvolvedor Fullstack
-            </p>
-            <p className="text-lg md:text-xl text-gray-400 max-w-xl mx-auto lg:mx-0">
-              Construo aplicações web modernas e escaláveis.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
-              <Link
-                href="#projetos"
-                className="px-6 py-3 bg-primary hover:bg-primary-dark text-white font-semibold rounded-lg transition-colors text-center"
-              >
-                Ver Projetos
-              </Link>
-              <Link
-                href="#contato"
-                className="px-6 py-3 border-2 border-primary text-primary hover:bg-primary/10 font-semibold rounded-lg transition-colors text-center"
-              >
-                Entrar em Contato
-              </Link>
-            </div>
-          </div>
+  const [currentSlide, setCurrentSlide] = useState(0)
+  
+  // Imagens do slide
+  const slides = [
+    '/sitecard.jpeg',
+  ]
 
-          {/* Lado direito - Imagem */}
-          <div className="relative w-full min-h-[400px] md:min-h-[500px] lg:min-h-[600px] order-first lg:order-last flex items-center justify-center">
-            <div className="relative w-full rounded-lg flex items-center justify-center">
-              <Image
-                src="/inapoli-souza.jpg"
-                alt="Inapoli Souza - Desenvolvedor Fullstack"
-                width={600}
-                height={800}
-                className="object-contain rounded-lg w-full h-auto"
-                priority
-              />
-            </div>
-          </div>
+  // Efeito para trocar slides automaticamente a cada 2 segundos
+  useEffect(() => {
+    if (slides.length <= 1) return
+
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length)
+    }, 2000)
+
+    return () => clearInterval(interval)
+  }, [slides.length])
+
+  return (
+    <section id="inicio" className="relative w-full h-screen min-h-[500px] sm:min-h-[600px] md:min-h-screen mt-[-12px]">
+      {/* Área do slide comercial com botões sobrepostos - Ocupa toda a tela */}
+      <div className="relative w-full h-full min-h-[500px] sm:min-h-[600px] md:min-h-screen">
+        {/* Card comercial - Slide */}
+        <div className="relative w-full h-full min-h-[500px] sm:min-h-[600px] md:min-h-screen">
+          <Image
+            src={slides[currentSlide]}
+            alt="Card comercial"
+            fill
+            className="object-contain sm:object-contain md:object-contain lg:object-cover"
+            priority
+            sizes="100vw"
+          />
+        </div>
+
+        {/* Botões sobrepostos na imagem */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 sm:gap-4 z-10 mt-[20px] mb-[10px] px-4">
+          <Link
+            href="#projetos"
+            className="px-4 py-2 sm:px-5 sm:py-2.5 bg-primary hover:bg-primary-dark text-white font-semibold rounded-lg transition-colors text-center text-sm sm:text-base w-full max-w-[180px] sm:max-w-[220px]"
+          >
+            Ver Projetos
+          </Link>
+          <Link
+            href="https://wa.me/5521971549767"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 sm:px-5 sm:py-2.5 border-2 border-primary text-primary hover:bg-primary/10 font-semibold rounded-lg transition-colors text-center bg-white/90 backdrop-blur-sm text-sm sm:text-base w-full max-w-[180px] sm:max-w-[220px]"
+          >
+            Entrar em Contato
+          </Link>
         </div>
       </div>
     </section>
   )
 }
-
