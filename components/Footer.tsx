@@ -17,7 +17,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-gray-400 text-sm">
-            © {new Date().getFullYear()} - Inapoli Souza. Todos os direitos reservados.
+            © 2024 - Inapoli Souza. Todos os direitos reservados.
           </p>
           
           <div className="flex items-center gap-6">
