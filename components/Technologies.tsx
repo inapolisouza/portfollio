@@ -10,6 +10,8 @@
  */
 'use client'
 
+import { useScrollReveal } from '@/hooks/useScrollReveal'
+
 const technologies = [
   {
     name: 'React',
@@ -133,8 +135,14 @@ const technologies = [
 ]
 
 export default function Technologies() {
+  const { ref, isRevealed } = useScrollReveal()
+
   return (
-    <section id="tecnologias" className="py-16 md:py-24 bg-dark-light">
+    <section 
+      id="tecnologias" 
+      ref={ref}
+      className={`py-16 md:py-20 lg:py-24 bg-dark-light scroll-reveal ${isRevealed ? 'revealed' : ''}`}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 md:mb-16 text-center">
           Tecnologias
@@ -145,12 +153,13 @@ export default function Technologies() {
           {technologies.map((tech, index) => (
             <div
               key={index}
-              className="bg-dark border border-gray-800 rounded-lg p-6 hover:border-primary/50 transition-colors text-center flex flex-col items-center justify-center gap-3"
+              className="bg-dark border border-gray-800 rounded-lg p-6 hover:border-primary/50 transition-all duration-300 hover-lift shadow-card hover:shadow-card-hover group text-center flex flex-col items-center justify-center gap-3"
+              style={{ animationDelay: `${index * 0.05}s` }}
             >
-              <div className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center" style={{ color: tech.color }}>
+              <div className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300" style={{ color: tech.color }}>
                 {tech.icon}
               </div>
-              <p className="text-white font-semibold text-sm md:text-base">{tech.name}</p>
+              <p className="text-white font-semibold text-sm md:text-base group-hover:text-primary transition-colors duration-300">{tech.name}</p>
             </div>
           ))}
         </div>

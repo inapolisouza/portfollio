@@ -16,7 +16,11 @@ import { Mail, Linkedin, Github } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { saveContact } from '@/services/contactService'
 
+import { useScrollReveal } from '@/hooks/useScrollReveal'
+
 export default function Contact() {
+  const { ref, isRevealed } = useScrollReveal()
+
   // Estado do formulário
   const [formData, setFormData] = useState({
     name: '',
@@ -82,7 +86,11 @@ export default function Contact() {
   }, [submitMessage])
 
   return (
-    <section id="contato" className="py-16 md:py-24">
+    <section 
+      id="contato" 
+      ref={ref}
+      className={`py-16 md:py-20 lg:py-24 scroll-reveal ${isRevealed ? 'revealed' : ''}`}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 md:mb-16 text-center">
           Entre em Contato
@@ -90,47 +98,53 @@ export default function Contact() {
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
           {/* Coluna esquerda - Informações de contato */}
-          <div className="space-y-6">
+          <div className="space-y-6 animate-fade-in-up">
             {/* Link de Email */}
-            <div className="flex items-center gap-4 text-gray-300">
+            <div className="flex items-center gap-4 p-4 bg-dark border border-gray-800 rounded-lg hover:border-primary/50 transition-all duration-300 hover-lift group">
+              <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors duration-300">
               <Mail className="w-5 h-5 text-primary flex-shrink-0" />
+              </div>
               <a 
                 href="mailto:inapoli.souza2013@gmail.com"
-                className="hover:text-primary transition-colors"
+                className="hover:text-primary transition-colors duration-300 text-gray-300"
               >
-                Email: inapoli.souza2013@gmail.com
+                inapoli.souza2013@gmail.com
               </a>
             </div>
             
             {/* Link do LinkedIn */}
-            <div className="flex items-center gap-4 text-gray-300">
+            <div className="flex items-center gap-4 p-4 bg-dark border border-gray-800 rounded-lg hover:border-primary/50 transition-all duration-300 hover-lift group">
+              <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors duration-300">
               <Linkedin className="w-5 h-5 text-primary flex-shrink-0" />
+              </div>
               <a 
                 href="https://www.linkedin.com/in/inapoli-souza-9513b7268" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="hover:text-primary transition-colors"
+                className="hover:text-primary transition-colors duration-300 text-gray-300"
               >
-                LinkedIn: /in/inapoli-souza-9513b7268
+                LinkedIn
               </a>
             </div>
             
             {/* Link do GitHub */}
-            <div className="flex items-center gap-4 text-gray-300">
+            <div className="flex items-center gap-4 p-4 bg-dark border border-gray-800 rounded-lg hover:border-primary/50 transition-all duration-300 hover-lift group">
+              <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors duration-300">
               <Github className="w-5 h-5 text-primary flex-shrink-0" />
+              </div>
               <a 
                 href="https://github.com/inapolisouza" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="hover:text-primary transition-colors"
+                className="hover:text-primary transition-colors duration-300 text-gray-300"
               >
-                GitHub: /inapolisouza
+                GitHub
               </a>
             </div>
           </div>
 
           {/* Coluna direita - Formulário de contato */}
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             {/* Campo Nome */}
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
@@ -143,7 +157,7 @@ export default function Contact() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 bg-dark-light border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary"
+                className="w-full px-4 py-3 bg-dark-light border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
                 placeholder="Seu nome"
               />
             </div>
@@ -160,7 +174,7 @@ export default function Contact() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 bg-dark-light border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary"
+                className="w-full px-4 py-3 bg-dark-light border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
                 placeholder="seu@email.com"
               />
             </div>
@@ -177,7 +191,7 @@ export default function Contact() {
                 onChange={handleChange}
                 required
                 rows={5}
-                className="w-full px-4 py-2 bg-dark-light border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary resize-none"
+                className="w-full px-4 py-3 bg-dark-light border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 resize-none transition-all duration-300"
                 placeholder="Sua mensagem"
               />
             </div>
@@ -186,9 +200,9 @@ export default function Contact() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full px-6 py-3 bg-primary hover:bg-primary-dark text-white font-semibold rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full px-6 py-3 bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white font-semibold rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 shadow-lg hover:shadow-glow"
             >
-              {isSubmitting ? 'Enviando...' : 'Enviar'}
+              {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
             </button>
             
             {/* Mensagem de Feedback (sucesso ou erro) */}
